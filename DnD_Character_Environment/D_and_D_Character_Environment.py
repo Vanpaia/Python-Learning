@@ -42,7 +42,7 @@ races = ['deva', 'dragonborn', 'drow', 'dwarf', 'eladrin', 'elf', 'genasi', 'git
 classes = ['ardent', 'avenger', 'barbarian', 'bard', 'battlemind', 'cleric', 'druid', 'fighter', 'invoker', 'monk', 'paladin', 'psion', 'ranger', 'rogue', 'runepriest', 'seeker', 'shaman', 'sorcerer', 'warden', 'warlock', 'warlord', 'wizard']
 
 def help():
-	print "Welcome to the D&D Player's Character Environment v0.1"
+	print "Welcome to the D&D Player\'s Character Environment v0.1"
 	print "Now go dungeoneering!"
 
 
