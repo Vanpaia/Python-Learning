@@ -4,6 +4,8 @@
 
 This is going to be a project for the sole purpose of learning python. It is a scaleable project and I will work on it as I learn and learn from it as I work.
 
+For this reason it might contain workarounds and solutions that are not so good and for the same reasons the structure and functions might change heavily in the future.
+
 This is v0.1, which means it is not usable yet. The first usuable version will be v1.0
 
 ### HOW TO:
