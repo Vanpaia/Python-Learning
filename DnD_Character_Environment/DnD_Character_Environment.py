@@ -109,28 +109,21 @@ def new_char_atr():
 
 Future structure for inventory
 
-class ShoppingCart(object):
-    """Creates shopping cart objects
-    for users of our fine website."""
-    items_in_cart = {}
-    def __init__(self, customer_name):
-        self.customer_name = customer_name
+class Inventory(object):
+    items_in_inventory = {}
+    def __init__(self, char_name):
+        self.char_name = char_name
 
-    def add_item(self, product, price):
-        """Add product to the cart."""
-        if not product in self.items_in_cart:
-            self.items_in_cart[product] = price
-            print product + " added."
-        else:
-            print product + " is already in the cart."
+    def add_item(self, item, amount):
+		self.items_in_inventory[item] += amount
+		print product + " added."
 
-    def remove_item(self, product):
-        """Remove product from the cart."""
-        if product in self.items_in_cart:
-            del self.items_in_cart[product]
-            print product + " removed."
+    def remove_item(self, item, amount):
+        if item in self.items_in_inventory and self.items_in_inventory[item] > 0:
+            self.items_in_inventory[item] += -amount
+            print "%s %s removed." %(amount, item)
         else:
-            print product + " is not in the cart."
+            print item + " is not in the inventory."
 
 """
 		
