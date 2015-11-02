@@ -32,6 +32,7 @@
 ##	- Loading
 
 from random import randint
+import pickle
 
 class Characters(object):
 	
@@ -125,7 +126,23 @@ def help():
 	print "Welcome to the D&D Player\'s Character Environment v0.1"
 	print "Now go dungeoneering!"
 
+def save():
+	#save_text = "%s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s" %(char.exp, char.gender, char.name, char.race, char.age, char.height, char.weight, char.char_class, char.alignment, char.deity, char.str, char.con, char.dex, char.int, char.wis, char.char)
+	#with open("character.txt", "w") as save_file:
+	#	save_file.write(save_text)
+	#if not save_file.closed:
+	#	save_file.close()
+	#	print "file closed"
+	file = open("save", "w")
+	pickle.dump(char, file)
+	file.close
 
+def load():
+	global char
+	load_file = open("save", "r")
+	char = pickle.load(load_file)
+	load_file.close()
+	
 def d(sides, throws = 1, advantage = 0):
 	result = []
 	if advantage == 0:	
@@ -207,6 +224,10 @@ def new_char_atr():
 		print "Sorry, I don't understand."
 		new_char_atr()
 
+#new_char_input()
+#new_char_atr()
+#save()
+		
 """
 
 Future structure for inventory
