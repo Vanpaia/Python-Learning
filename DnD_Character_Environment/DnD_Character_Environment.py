@@ -33,10 +33,90 @@
 
 from random import randint
 
-char = {
-"Level" : 1,
-"Experience" : 0
-}
+class Characters(object):
+	
+	def __init__(self, exp, gender, name, race, age, height, weight, char_class, alignment, deity, str=0, con=0, dex=0, int=0, wis=0, char=0):
+		self.exp = exp
+		self.gender = gender
+		self.name = name
+		self.race = race
+		self.age = age
+		self.height = height
+		self.weight = weight
+		self.char_class = char_class
+		self.alignment = alignment
+		self.deity = deity
+		self.str = str
+		self.con = con
+		self.dex = dex
+		self.int = int
+		self.wis = wis
+		self.char = char
+	
+	
+	def level(self):
+		if self.exp < 1000:
+			return 1
+		elif self.exp < 2250:
+			return 2
+		elif self.exp < 3750:
+			return 3
+		elif self.exp < 5500:
+			return 4
+		elif self.exp < 7500:
+			return 5
+		elif self.exp < 10000:
+			return 6
+		elif self.exp < 13000:
+			return 7
+		elif self.exp < 16500:
+			return 8
+		elif self.exp < 20500:
+			return 9
+		elif self.exp < 26000:
+			return 10
+		elif self.exp < 32000:
+			return 11
+		elif self.exp < 39000:
+			return 12
+		elif self.exp < 47000:
+			return 13
+		elif self.exp < 57000:
+			return 14
+		elif self.exp < 69000:
+			return 15
+		elif self.exp < 83000:
+			return 16
+		elif self.exp < 99000:
+			return 17
+		elif self.exp < 119000:
+			return 18
+		elif self.exp < 143000:
+			return 19
+		elif self.exp < 175000:
+			return 20
+		elif self.exp < 210000:
+			return 21
+		elif self.exp < 255000:
+			return 22
+		elif self.exp < 310000:
+			return 23
+		elif self.exp < 375000:
+			return 24
+		elif self.exp < 450000:
+			return 25
+		elif self.exp < 550000:
+			return 26
+		elif self.exp < 675000:
+			return 27
+		elif self.exp < 825000:
+			return 28
+		elif self.exp < 1000000:
+			return 29
+		else:
+			return 30
+
+
 
 races = ['deva', 'dragonborn', 'drow', 'dwarf', 'eladrin', 'elf', 'genasi', 'githzerai', 'gnoll', 'gnome', 'goblin', 'goliath', 'half-elf', 'half-orc', 'halfling', 'hamadryad', 'human', 'kalashtar', 'shifter', 'minotaur', 'mul', 'pixie', 'revenant', 'satyr', 'shadar-kai', 'shade', 'shardmind', 'thri-kreen', 'tiefling', 'vryloka', 'warforged', 'wilden']
 classes = ['ardent', 'avenger', 'barbarian', 'bard', 'battlemind', 'cleric', 'druid', 'fighter', 'invoker', 'monk', 'paladin', 'psion', 'ranger', 'rogue', 'runepriest', 'seeker', 'shaman', 'sorcerer', 'warden', 'warlock', 'warlord', 'wizard']
@@ -62,6 +142,25 @@ def d(sides, throws = 1, advantage = 0):
 				result.remove(max(result))
 	return result
 
+
+def new_char_input():
+	global char
+	char = Characters(
+		0,
+		raw_input("Are you male or female? "),
+		raw_input("What is your name? "),
+		raw_input("You are the representative of which race? "),
+		int(raw_input("How old are you? ")),
+		int(raw_input("How tall are you? ")),
+		int(raw_input("How fat are you? ")),
+		raw_input("Please enter your class. "),
+		raw_input("Please enter your alignment. "),
+		raw_input("Who is your deity? ")
+	)
+
+	
+"""
+
 def new_char_input():
 	## These choices are cosmetic and will not change anything later on
 	char["Gender"] = raw_input("Are you male or female? ")
@@ -82,16 +181,19 @@ def new_char_input():
 	char["Alignment"] = raw_input("Please enter your alignment. ")
 	char["Deity"] = raw_input("Who is your deity? ")
 
+
+"""	
+	
 def new_char_atr():
 	user_creation_choice = raw_input("random? (y/n) ")
 	if user_creation_choice.lower() == "y" or user_creation_choice.lower() == "yes":
-		char["Strength"] = sum(d(6, 3, 1))
-		char["Constitution"] = sum(d(6, 3, 1))
-		char["Dexterity"] = sum(d(6, 3, 1))
-		char["Intelligence"] = sum(d(6, 3, 1))
-		char["Wisdom"] = sum(d(6, 3, 1))
-		char["Charisma"] = sum(d(6, 3, 1))
-		print "You rolled the following stats: \nStr: %s Con: %s Dex: %s Int: %s Wis: %s Char: %s" %(char["Strength"], char["Constitution"], char["Dexterity"], char["Intelligence"], char["Wisdom"], char["Charisma"])
+		char.str = sum(d(6, 3, 1))
+		char.con = sum(d(6, 3, 1))
+		char.dex = sum(d(6, 3, 1))
+		char.int = sum(d(6, 3, 1))
+		char.wis = sum(d(6, 3, 1))
+		char.char = sum(d(6, 3, 1))
+		print "You rolled the following stats: \nStr: %s Con: %s Dex: %s Int: %s Wis: %s Char: %s" %(char.str, char.con, char.dex, char.int, char.wis, char.char)
 	elif user_creation_choice.lower() == "n" or user_creation_choice.lower() == "no":
 		print "not done yet"
 		"""
