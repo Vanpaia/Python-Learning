@@ -242,22 +242,25 @@ def interface():
 		advantage = int(raw_input("What is your advantage? "))
 		print d(side, throws, advantage)
 	elif choice == "see character":
-		print char.exp
-		print char.gender
-		print char.name
-		print char.race
-		print char.age
-		print char.height
-		print char.weight
-		print char.char_class
-		print char.alignment
-		print char.deity
-		print char.str
-		print char.con
-		print char.dex
-		print char.int
-		print char.wis
-		print char.char
+		if "char" in globals():
+			print char.exp
+			print char.gender
+			print char.name
+			print char.race
+			print char.age
+			print char.height
+			print char.weight
+			print char.char_class
+			print char.alignment
+			print char.deity
+			print char.str
+			print char.con
+			print char.dex
+			print char.int
+			print char.wis
+			print char.char
+		else:
+			print "No character available"
 	elif choice == "save":
 		save()
 	elif choice == "load":
