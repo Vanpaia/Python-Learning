@@ -34,6 +34,8 @@
 from random import randint
 import pickle
 
+gamestate = "continue"
+
 class Characters(object):
 	
 	def __init__(self, exp, gender, name, race, age, height, weight, char_class, alignment, deity, str=0, con=0, dex=0, int=0, wis=0, char=0):
@@ -142,6 +144,10 @@ def load():
 	load_file = open("save", "r")
 	char = pickle.load(load_file)
 	load_file.close()
+
+def exit():
+	global gamestate
+	gamestate = "quit"
 	
 def d(sides, throws = 1, advantage = 0):
 	result = []
@@ -224,9 +230,43 @@ def new_char_atr():
 		print "Sorry, I don't understand."
 		new_char_atr()
 
-#new_char_input()
-#new_char_atr()
-#save()
+		
+def interface():
+	choice = raw_input("What do you want to do? \nnew \ndice \nsee character \nsave \nload \nexit \n")
+	if choice == "new":
+		new_char_input()
+		new_char_atr()
+	elif choice == "dice":
+		side = int(raw_input("How many sides does the dice have? "))
+		throws = int(raw_input("How many throws do you want to make? "))
+		advantage = int(raw_input("What is your advantage? "))
+		print d(side, throws, advantage)
+	elif choice == "see character":
+		print char.exp
+		print char.gender
+		print char.name
+		print char.race
+		print char.age
+		print char.height
+		print char.weight
+		print char.char_class
+		print char.alignment
+		print char.deity
+		print char.str
+		print char.con
+		print char.dex
+		print char.int
+		print char.wis
+		print char.char
+	elif choice == "save":
+		save()
+	elif choice == "load":
+		load()
+	elif choice == "exit":
+		exit()
+		
+while gamestate == "continue":
+	interface()
 		
 """
 
