@@ -1,0 +1,20 @@
+#class Race(object):
+#	def __init__(self, ability_scores, speed, vision, languages, racial_traits, racial_power):
+#		self.ability_scores = ability_scores
+#		self.speed = speed
+#		self.vision = vision
+#		self.languages = languages
+#		self.racial_traits = racial_traits
+#		self. racial_power = racial_power
+
+class Dragonborn(Object):
+	def __init__(self, name):
+		self.name = name	
+		self.max_h = 203
+		self.min_h = 188
+		self.max_w = 145
+		self.min_w = 100
+	def ability_scores():
+		char.str = char.str +2
+		char.char = char.char +2
+	
