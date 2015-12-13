@@ -14,7 +14,7 @@ class App:
 		self.button.grid(row=40, column =40, sticky = W)
 		
 		self.b_dice = Button(frame, text="Throw d20", command=self.dice)
-		self.b_dice.grid(row=0, column = 0, columnspan = 4, sticky = W)
+		self.b_dice.grid(row=0, column = 0, columnspan = 1, sticky = W)
 		
 		self.result = ""
 		self.label_text = StringVar()
