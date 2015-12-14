@@ -38,7 +38,7 @@ gamestate = "continue"
 
 class Characters(object):
 	
-	def __init__(self, exp, gender, name, race, age, height, weight, char_class, alignment, deity, str=10, con=10, dex=10, int=10, wis=10, char=10, speed=0):
+	def __init__(self, exp, gender, name, race, age, height, weight, char_class, alignment, deity, str=10, con=10, dex=10, int=10, wis=10, char=10, acrobatics = 0, arcana = 0, athletics = 0, bluff = 0, diplomacy = 0, dungeoneering = 0, endurance = 0, heal = 0, history = 0, insight = 0, intimidate = 0, nature = 0, perception = 0, religion = 0, stealth = 0, streetwise = 0, thievery = 0, speed = 0):
 		self.exp = exp
 		self.gender = gender
 		self.name = name
@@ -56,6 +56,24 @@ class Characters(object):
 		self.wis = wis
 		self.char = char
 		
+		self.acrobatics = acrobatics
+		self.arcana = arcana
+		self.athletics = athletics
+		self.bluff = bluff
+		self.diplomacy = diplomacy
+		self.dungeoneering = dungeoneering
+		self.endurance = endurance
+		self.heal = heal
+		self.history = history
+		self.insight = insight
+		self.intimidate = intimidate
+		self.nature = nature
+		self.perception = perception
+		self.religion = religion
+		self.stealth = stealth
+		self.streetwise = streetwise
+		self.thievery = thievery
+
 		self.speed = speed
 	
 	
@@ -213,7 +231,7 @@ tiefling = Race("Tiefling",188, 168, 104, 64, "medium", 6, "low-light", ["common
 
 cleric = CharacterClasses("Cleric", "Leader", "Divine", ["wis", "str", "char"], ["cloth", "leather", "hide", "chainmail"], ["simple melee", "simple ranged"], "Holy symbol", "will", [12, "con"], [7, "con"], {1:"religion", 2:["arcana", "diplomacy", "heal", "history", "insight", "religion"]} )
 
-
+skills = ["acrobatics", "arcana", "athletics", "bluff", "diplomacy", "dungeoneering", "endurance", "heal", "history", "insight", "intimidate", "nature", "perception", "religion", "stealth", "streetwise", "thievery"]
 races = ['deva', 'dragonborn', 'drow', 'dwarf', 'eladrin', 'elf', 'genasi', 'githzerai', 'gnoll', 'gnome', 'goblin', 'goliath', 'half-elf', 'half-orc', 'halfling', 'hamadryad', 'human', 'kalashtar', 'shifter', 'minotaur', 'mul', 'pixie', 'revenant', 'satyr', 'shadar-kai', 'shade', 'shardmind', 'thri-kreen', 'tiefling', 'vryloka', 'warforged', 'wilden']
 classes = ['ardent', 'avenger', 'barbarian', 'bard', 'battlemind', 'cleric', 'druid', 'fighter', 'invoker', 'monk', 'paladin', 'psion', 'ranger', 'rogue', 'runepriest', 'seeker', 'shaman', 'sorcerer', 'warden', 'warlock', 'warlord', 'wizard']
 attributes = ["str", "con", "dex", "int", "wis", "char"]
@@ -305,33 +323,6 @@ def new_char_input():
 	char.speed = char.race.speed
 	char.vision = char.race.vision
 	char.languages = char.race.languages
-
-
-	
-"""
-
-def new_char_input():
-	## These choices are cosmetic and will not change anything later on
-	char["Gender"] = raw_input("Are you male or female? ")
-	char["Name"] = raw_input("What is your name? ")
-	char["Race"] = raw_input("You are the representative of which race? ")
-	while char["Race"].lower() not in races:
-		print "Not a valid race."
-		char["Race"] = raw_input("You are the representative of which race? ")
-	char["Age"] = raw_input("How old are you? ")
-	char["Height"] = raw_input("How tall are you? ")
-	char["Weight"] = raw_input("How fat are you? ")
-
-	## These choices should be limited and have impact on other things
-	char["Class"] = raw_input("Please enter your class. ")
-	while char["Class"].lower() not in classes:
-		print "Not a valid class."
-		char["Class"] = raw_input("Please enter your class. ")
-	char["Alignment"] = raw_input("Please enter your alignment. ")
-	char["Deity"] = raw_input("Who is your deity? ")
-
-
-"""	
 	
 def new_char_atr():
 	user_creation_choice = raw_input("random attributes? (y/n) ")
@@ -576,20 +567,11 @@ class Inventory(object):
 """
 		
 
-##	Strength represents physical power.
-##	Constitution represents health and stamina.
-##	Dexterity represents agility and reflexes.
-##	Intelligence represents reasoning.
-##	Wisdom represents common sense.
-##	Charisma represents personality.
-
-
 """
 
 Future plans:
 
 - Menu
-- Online capability
 - Multiple characters
 - UI
 
