@@ -138,32 +138,69 @@ class Race(object):
 		self.sb1 = sb1
 		self.sb2 = sb2
 	def ability_scores(self):
-		if self.as1 == "str":
+		if self.as1 == "str" or self.as2 == "str" :
 			char.str += 2
-		elif self.as1 == "con":
+		if self.as1 == "con" or self.as2 == "con":
 			char.con += 2
-		elif self.as1 == "dex":
+		if self.as1 == "dex" or self.as2 == "dex":
 			char.dex += 2
-		elif self.as1 == "int":
+		if self.as1 == "int" or self.as2 == "int":
 			char.int += 2
-		elif self.as1 == "wis":
+		if self.as1 == "wis" or self.as2 == "wis":
 			char.wis += 2
-		elif self.as1 == "char":
+		if self.as1 == "char" or self.as2 == "char":
 			char.char += 2
+		if self.as1 == "choice":
+			print "Your Ability Score lets you choose an ability you want to improve by two"
+			improve = str(raw_input("What attribute do you want to improve? \n(str, con, dex, int, wis, char) "))
+			while improve not in attributes:
+				print "not a valid attribute"
+				improve = raw_input("What attribute do you want to improve? \n(str, con, dex, int, wis, char) ")
+			if improve.lower() == "str":
+				char.str += 2
+			elif improve.lower() == "con":
+				char.con += 2
+			elif improve.lower() == "dex":
+				char.dex += 2
+			elif improve.lower() == "int":
+				char.int += 2
+			elif improve.lower() == "wis":
+				char.wis += 2
+			elif improve.lower() == "char":
+				char.char += 2
+		if self.as2 == "choice":
+			print "Your Ability Score lets you choose another ability you want to improve by two"
+			improve = str(raw_input("What attribute do you want to improve? \n(str, con, dex, int, wis, char) "))
+			while improve not in attributes:
+				print "not a valid attribute"
+				improve = raw_input("What attribute do you want to improve? \n(str, con, dex, int, wis, char) ")
+			if improve.lower() == "str":
+				char.str += 2
+			elif improve.lower() == "con":
+				char.con += 2
+			elif improve.lower() == "dex":
+				char.dex += 2
+			elif improve.lower() == "int":
+				char.int += 2
+			elif improve.lower() == "wis":
+				char.wis += 2
+			elif improve.lower() == "char":
+				char.char += 2
 
-		if self.as2 == "str":
-			char.str += 2
-		elif self.as2 == "con":
-			char.con += 2
-		elif self.as2 == "dex":
-			char.dex += 2
-		elif self.as2 == "int":
-			char.int += 2
-		elif self.as2 == "wis":
-			char.wis += 2
-		elif self.as2 == "char":
-			char.char += 2
-
+class CharacterClasses(object):
+	
+	def __init__(self, name, role, powersource, keyabilities, armorproficiency, weaponproficiency, implement, defensebonus, hitpoints, healingsurges, trainedskills):
+		self.name = name
+		self.role = role
+		self.powersource = powersource
+		self.keyabilities = keyabilities
+		self.armorproficiency = armorproficiency
+		self.weaponproficiency = weaponproficiency
+		self.implement = implement
+		self.defensebonus = defensebonus
+		self.hitpoints = hitpoints
+		self.healingsurges = healingsurges
+		self.trainedskills = trainedskills
 
 dragonborn = Race("Dragonborn", 203, 188, 145, 100, "medium", 6, "normal", ["common", "draconic"], "str", "char", "history", "intimidate")
 dwarf = Race("Dwarf", 145, 130, 100, 73, "medium", 5, "low-light", ["common", "dwarven"], "con", "wis", "dungeoneering", "endurance")
@@ -174,8 +211,12 @@ halfling = Race("Halfling", 127, 117, 39, 34, "small", 6, "normal", ["common"], 
 human = Race("Human", 188, 168, 61, 100, "medium", 6, "normal", ["common"], "choice", "choice", "training", "nothing")
 tiefling = Race("Tiefling",188, 168, 104, 64, "medium", 6, "low-light", ["common"], "int", "char", "bluff", "stealth")
 
+cleric = CharacterClasses("Cleric", "Leader", "Divine", ["wis", "str", "char"], ["cloth", "leather", "hide", "chainmail"], ["simple melee", "simple ranged"], "Holy symbol", "will", [12, "con"], [7, "con"], {1:"religion", 2:["arcana", "diplomacy", "heal", "history", "insight", "religion"]} )
+
+
 races = ['deva', 'dragonborn', 'drow', 'dwarf', 'eladrin', 'elf', 'genasi', 'githzerai', 'gnoll', 'gnome', 'goblin', 'goliath', 'half-elf', 'half-orc', 'halfling', 'hamadryad', 'human', 'kalashtar', 'shifter', 'minotaur', 'mul', 'pixie', 'revenant', 'satyr', 'shadar-kai', 'shade', 'shardmind', 'thri-kreen', 'tiefling', 'vryloka', 'warforged', 'wilden']
 classes = ['ardent', 'avenger', 'barbarian', 'bard', 'battlemind', 'cleric', 'druid', 'fighter', 'invoker', 'monk', 'paladin', 'psion', 'ranger', 'rogue', 'runepriest', 'seeker', 'shaman', 'sorcerer', 'warden', 'warlock', 'warlord', 'wizard']
+attributes = ["str", "con", "dex", "int", "wis", "char"]
 
 def help():
 	print "Welcome to the D&D Player\'s Character Environment v0.1"
@@ -217,9 +258,16 @@ def d(sides, throws = 1, advantage = 0):
 def new_char_input():
 	global char
 	
-	new_sex = raw_input("Are you male or female? ")
-	new_name = raw_input("What is your name? ")
+	while True:
+		new_sex = raw_input("Are you male or female? ").capitalize()
+		if new_sex == "Male" or new_sex == "Female":
+			break
+		print "We are not that progressive..."
+	new_name = raw_input("What is your name? ").capitalize()
 	new_race = raw_input("You are the representative of which race? ").lower()
+	while new_race not in races:
+		print "Not a valid race."
+		new_race = raw_input("You are the representative of which race? ").lower()
 	if new_race == "dragonborn":
 		new_race = dragonborn
 	elif new_race == "dwarf":
@@ -237,8 +285,17 @@ def new_char_input():
 	elif new_race == "tiefling":
 		new_race = tiefling
 	new_age = int(raw_input("How old are you? "))
+	while (new_age <= 0):
+		print "That would mean you don't exist..."
+		new_age = int(raw_input("How old are you? "))
 	new_h = int(raw_input("How tall are you? "))
+	while (new_h <= 0):
+		print "You want me to believe that?"
+		new_h = int(raw_input("How tall are you? "))
 	new_w = int(raw_input("How fat are you? "))
+	while (new_w <= 0):
+		print "That'd be an unbelieveable diet..."
+		new_w = int(raw_input("How fat are you? "))
 	new_class = raw_input("What is your class? ")
 	new_allignment = raw_input("What is your alignment? ")
 	new_deity = raw_input("Who is your deity? ")
@@ -248,6 +305,7 @@ def new_char_input():
 	char.speed = char.race.speed
 	char.vision = char.race.vision
 	char.languages = char.race.languages
+
 
 	
 """
@@ -289,7 +347,6 @@ def new_char_atr():
 		print "Your race changes this to: \nStr: %s Con: %s Dex: %s Int: %s Wis: %s Char: %s" %(char.str, char.con, char.dex, char.int, char.wis, char.char)
 		
 	elif user_creation_choice.lower() == "n" or user_creation_choice.lower() == "no":
-		attributes = ["str", "con", "dex", "int", "wis", "char"]
 		attribute_cost = {10:0, 11:1, 12:2, 13:3, 14:5, 15:7, 16:9, 17:12, 18:16}
 		attribute_cost_weakness = {8:0, 9:1, 10:2, 11:3, 12:4, 13:5, 14:7, 15:9, 16:11, 17:14, 18:18}
 		points_left = 22
